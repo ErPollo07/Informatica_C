@@ -17,11 +17,14 @@ void main() {
 
     float prezzoScontato;
 
+    // Chiedo l'input fino a che il prezzo < 0
     do {
         printf("inserire l'importo: ");
         scanf("%f", &prezzo);
     } while (prezzo < 0);
 
+
+    // Calcolo lo sconto e lo applico al prezzo
     if (prezzo < 500) {
         prezzoScontato = prezzo - prezzo * (scontoMinore500 / 100.0);
     }
@@ -35,5 +38,6 @@ void main() {
         printf("inserire un valore positivo");
     }
 
+    // Stampo il prezzo inserito dall'utente e il prezzo con lo sconto applicato
     printf("Importo inseririto: %.2f\nimporto con sconto: %.2f\n", prezzo, prezzoScontato);
 }

@@ -1,4 +1,6 @@
-
+/*
+RACCOGLITORE ESERCIZI
+*/
 
 #include <stdio.h>
 

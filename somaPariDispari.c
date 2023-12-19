@@ -41,10 +41,15 @@ void main() {
             lenght--;
         }
 
-        mediaPari = sommaPari / lenghtPari;
-        mediaDispari = sommaDispari / lenghtDispari;
-        printf("La media dei numeri pari: %.2f\n", mediaPari);
-        printf("La media dei numeri dispari: %.2f\n", mediaDispari);
+        if (lenghtPari > 0)
+            mediaPari = sommaPari / lenghtPari;
+        if (lenghtDispari > 0)
+            mediaDispari = sommaDispari / lenghtDispari;
+        
+        if (mediaPari > 0)
+            printf("La media dei numeri pari: %.2f\n", mediaPari);
+        if (mediaDispari > 0)
+            printf("La media dei numeri dispari: %.2f\n", mediaDispari);
     }
     else {
         printf("Non puoi inserire piú di 30 numeri");

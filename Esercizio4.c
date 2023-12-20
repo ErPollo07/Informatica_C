@@ -48,6 +48,14 @@ void main() {
             
             // se il numero (i) é primo allora aggiorno contatore
             if (_flagPrimo == 1) c++;
+
+            // se il numero é primo
+            if (_flagPrimo) {
+                // se il count é pari allora aggiorna la somma
+                if (c % 2 == 0) somma += i;
+                // Aggiorno il count
+                c++;
+            }
         }
         
         

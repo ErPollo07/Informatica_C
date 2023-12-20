@@ -41,6 +41,6 @@ void main() {
         printf("Importo inseririto: %.2f\nimporto con sconto: %.2f\n", prezzo, prezzoScontato);
 
         printf("Vuoi inserire un altro importo: \n(1) SI\n(0) NO\n");
-        scanf("%d", continua);
+        scanf("%d", &continua);
     } while (continua);
 }

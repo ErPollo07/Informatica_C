@@ -25,7 +25,6 @@ void main() {
         
         if (i > 1) {
             
-            
             _flagPrimo = 1;
             
             /* DEBUG
@@ -40,15 +39,11 @@ void main() {
                     break;
                 }
             }
-            
-            printf("Count: %d\n", c);
-            
-            // se il numero é primo e il contatore é pari allora aggiorno la somma
-            if (_flagPrimo && c % 2 == 0) somma += i;
-            
-            // se il numero (i) é primo allora aggiorno contatore
-            if (_flagPrimo == 1) c++;
 
+            /* DEBUG
+            printf("Count: %d\n", c);
+            */
+           
             // se il numero é primo
             if (_flagPrimo) {
                 // se il count é pari allora aggiorna la somma

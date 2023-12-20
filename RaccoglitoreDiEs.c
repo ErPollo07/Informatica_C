@@ -45,7 +45,6 @@ void PrintMenu() {
     printf("    3. Somma media n positivi negativi\n");
     printf("    4. Somma numeri primi alterni\n");
     printf("**************************************\n\n");
-
 }
 
 void Es1() {
@@ -102,35 +101,38 @@ void Es1() {
 
 void Es2() {
     
-    float prezzo;
+    float prezzo, prezzoScontato;
+    float sconto, sconto1000 = 20, scontoOltre1001 = 30;
+    int continua;
 
-    float scontoMinore500 = 10, sconto1000 = 20, scontoOltre1001 = 30;
-
-    float prezzoScontato;
-
-    // Chiedo l'input fino a che il prezzo < 0
     do {
-        printf("inserire l'importo: ");
-        scanf("%f", &prezzo);
-    } while (prezzo < 0);
+        // Chiedo l'input fino a che il prezzo < 0
+        do {
+            printf("inserire l'importo: ");
+            scanf("%f", &prezzo);
+        } while (prezzo < 0);
 
 
-    // Calcolo lo sconto e lo applico al prezzo
-    if (prezzo < 500) {
-        prezzoScontato = prezzo - prezzo * (scontoMinore500 / 100.0);
-    }
-    else if (prezzo >= 501 && prezzo < 1001) {
-        prezzoScontato = prezzo - prezzo * (sconto1000 / 100.0);
-    }
-    else if (prezzo >= 1001) {
-        prezzoScontato = prezzo - prezzo * (scontoOltre1001 / 100.0);
-    }
-    else {
-        printf("inserire un valore positivo");
-    }
+        // Calcolo lo sconto e lo applico al prezzo
+        if (prezzo < 500) {
+            sconto = 10;
+            prezzoScontato = prezzo - prezzo * (sconto / 100.0);
+        }
+        else if (prezzo >= 500 && prezzo < 1001) {
+            sconto = 20;
+            prezzoScontato = prezzo - prezzo * (sconto / 100.0);
+        }
+        else if (prezzo >= 1001) {
+            sconto = 30;
+            prezzoScontato = prezzo - prezzo * (sconto / 100.0);
+        }
 
-    // Stampo il prezzo inserito dall'utente e il prezzo con lo sconto applicato
-    printf("Importo inseririto: %.2f\nimporto con sconto: %.2f\n", prezzo, prezzoScontato);
+        // Stampo il prezzo inserito dall'utente e il prezzo con lo sconto applicato
+        printf("Importo inseririto: %.2f\nimporto con sconto: %.2f\n", prezzo, prezzoScontato);
+
+        printf("Vuoi inserire un altro importo: \n(1) SI\n(0) NO\n");
+        scanf("%d", &continua);
+    } while (continua);
 }
 
 void Es3() {
@@ -185,14 +187,13 @@ void Es4() {
     printf("Inserisci un numero: ");
     scanf("%d", &numero);
 
-    for (int i = 1; i < numero; i++) {
+    for (int i = 1; i <= numero; i++) {
 
         /* DEBUG
         printf("i: %d\n", i);
         */
         
         if (i > 1) {
-            
             
             _flagPrimo = 1;
             
@@ -208,16 +209,18 @@ void Es4() {
                     break;
                 }
             }
-            
+
             /* DEBUG
             printf("Count: %d\n", c);
             */
-            
-            // se il numero é primo e il contatore é pari allora aggiorno la somma
-            if (_flagPrimo && c % 2 == 0) somma += i;
-            
-            // se il numero (i) é primo allora aggiorno contatore
-            if (_flagPrimo == 1) c++;
+           
+            // se il numero é primo
+            if (_flagPrimo) {
+                // se il count é pari allora aggiorna la somma
+                if (c % 2 == 0) somma += i;
+                // Aggiorno il count
+                c++;
+            }
         }
         
         

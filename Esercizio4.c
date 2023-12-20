@@ -17,7 +17,7 @@ void main() {
     printf("Inserisci un numero: ");
     scanf("%d", &numero);
 
-    for (int i = 1; i < numero; i++) {
+    for (int i = 1; i <= numero; i++) {
 
         /* DEBUG
         printf("i: %d\n", i);

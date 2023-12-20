@@ -44,7 +44,7 @@ void PrintMenu() {
     printf("    2. Calcolatore di sconti\n");
     printf("    3. Somma media n positivi negativi\n");
     printf("    4. Somma numeri primi alterni\n");
-    printf("**************************************\n");
+    printf("**************************************\n\n");
 
 }
 

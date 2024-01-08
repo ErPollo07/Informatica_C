@@ -30,11 +30,14 @@ while (INSERIMENTO != "terminato")
 */
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define BOUND 3
 
-
-void PrintMenuAzioni() {
+void PrintMenuAzioni()
+{
+    printf("\n\n");
     printf("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|\n");
     printf("*                ~ BENVENUTI ~                  *\n");
     printf("|    1 Azioni AAPL             - Prezzo 165.98  |\n");
@@ -44,63 +47,74 @@ void PrintMenuAzioni() {
     printf("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|\n");
 }
 
-double Sum(double prezzi[], int bound) {
+double Sum(double prezzi[], int bound)
+{
     double sum = 0;
-    for (int i = 0; i < bound; i++) {
+    for (int i = 0; i < bound; i++)
+    {
         sum += prezzi[i];
     }
     return sum;
 }
 
-double Media(double arrayAzioni[], int bound) {
+double Media(double arrayAzioni[], int bound)
+{
     return Sum(arrayAzioni, bound) / bound;
 }
 
-double Min(double arrayAzioni[], int bound) {
+double Min(double arrayAzioni[], int bound)
+{
     double valMin = arrayAzioni[0];
 
-    for (int i = 0; i < bound; i++) {
+    for (int i = 0; i < bound; i++)
+    {
         if (arrayAzioni[i] < valMin)
             valMin = arrayAzioni[i];
     }
-    
+
     return valMin;
 }
 
-double Max(double arrayAzioni[], int bound) {
+double Max(double arrayAzioni[], int bound)
+{
     double valMax = arrayAzioni[0];
 
-    for (int i = 0; i < bound; i++) {
+    for (int i = 0; i < bound; i++)
+    {
         if (arrayAzioni[i] < valMax)
             valMax = arrayAzioni[i];
     }
-    
+
     return valMax;
 }
 
-void MediaTraValori(double arrayAzioni[], int bound, double valMax, double valMin) {
+void MediaTraValori(double arrayAzioni[], int bound, double valMax, double valMin)
+{
     double media;
     double sum = 0;
     double count = 0;
 
-
-    for (int i = 0; i < bound; i++) {
-        if (arrayAzioni[i] >= valMin && arrayAzioni[i] <= valMax)
+    for (int i = 0; i < bound; i++)
+    {
+        if (arrayAzioni[i] >= valMin && arrayAzioni[i] <= valMax) {
             sum += arrayAzioni[i];
             count++;
+        }
     }
 
-    if (count > 0) {
+    if (count > 0)
+    {
         media = sum / count;
-        printf("La media dei valori compresi tra %f e %f e': %f", valMin, valMax, media);
+        printf("La media dei valori compresi tra %f e %f e': %f\n", valMin, valMax, media);
     }
-    else {
-        printf("Non sono stati trovati valori tra %f e %f", valMin, valMax);
+    else
+    {
+        printf("Non sono stati trovati valori tra %f e %f\n", valMin, valMax);
     }
 }
 
-int main() {
-
+void main()
+{
 
     double azioniApple[BOUND] = {1.48, 2.73, 3.24};
     double azioniGoogle[BOUND] = {2.45, 3.12, 1.89};
@@ -109,33 +123,52 @@ int main() {
     double valoreMinimo = 2.50;
     double valoreMassimo = 3.50;
     int scelta;
+    char inserimento[20];
 
-    PrintMenuAzioni();
+    int flagContinuare = 1;
 
-    printf("Inserisci una scelta: ");
-    scanf("%d", &scelta);
+    do
+    {
+        PrintMenuAzioni();
 
-    if (scelta == 1) {
-        printf("La somma delle azioni e': %f\n", Sum(azioniApple, BOUND));
-        printf("La media delle azioni e': %f\n", Media(azioniApple, BOUND));
-        printf("Il valore minimo delle azioni e': %f\n", Min(azioniApple, BOUND));
-        printf("Il valore massimo delle azioni e': %f\n", Max(azioniApple, BOUND));
-        MediaTraValori(azioniApple, BOUND, valoreMinimo, valoreMinimo);
-    } else if (scelta == 2) {
-        printf("La somma delle azioni e': %f\n", Sum(azioniGoogle, BOUND));
-        printf("La media delle azioni e': %f\n", Media(azioniGoogle, BOUND));
-        printf("Il valore minimo delle azioni e': %f\n", Min(azioniGoogle, BOUND));
-        printf("Il valore massimo delle azioni e': %f\n", Max(azioniGoogle, BOUND));
-        MediaTraValori(azioniApple, BOUND, valoreMinimo, valoreMinimo);
-    } else if (scelta == 3) {
-        printf("La somma delle azioni e': %f\n", Sum(azioniAmazon, BOUND));
-        printf("La media delle azioni e': %f\n", Media(azioniAmazon, BOUND));
-        printf("Il valore minimo delle azioni e': %f\n", Min(azioniAmazon, BOUND));
-        printf("Il valore massimo delle azioni e': %f\n", Max(azioniAmazon, BOUND));
-        MediaTraValori(azioniApple, BOUND, valoreMinimo, valoreMinimo);
-    } else {
-        printf("Scelta non valida\n");
-    }
+        printf("Inserisci una scelta: ");
+        scanf("%s", &inserimento);
 
-    return 0;
+        if (strcmp(inserimento, "terminato") == 0)
+        {
+            break;
+        }
+
+        scelta = atoi(inserimento);
+
+        if (scelta == 1)
+        {
+            printf("La somma delle azioni e': %f\n", Sum(azioniApple, BOUND));
+            printf("La media delle azioni e': %f\n", Media(azioniApple, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(azioniApple, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(azioniApple, BOUND));
+            MediaTraValori(azioniApple, BOUND, valoreMassimo, valoreMinimo);
+        }
+        else if (scelta == 2)
+        {
+            printf("La somma delle azioni e': %f\n", Sum(azioniGoogle, BOUND));
+            printf("La media delle azioni e': %f\n", Media(azioniGoogle, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(azioniGoogle, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(azioniGoogle, BOUND));
+            MediaTraValori(azioniGoogle, BOUND, valoreMassimo, valoreMinimo);
+        }
+        else if (scelta == 3)
+        {
+            printf("La somma delle azioni e': %f\n", Sum(azioniAmazon, BOUND));
+            printf("La media delle azioni e': %f\n", Media(azioniAmazon, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(azioniAmazon, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(azioniAmazon, BOUND));
+            MediaTraValori(azioniAmazon, BOUND, valoreMassimo, valoreMinimo);
+        }
+        else
+        {
+            printf("Scelta non valida\n");
+        }
+
+    } while (1);
 }

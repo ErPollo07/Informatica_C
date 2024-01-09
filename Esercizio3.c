@@ -8,41 +8,45 @@ void main()
 {
 
     int n;
-    int numero = 0;
+    int number = 0;
 
-    double coutPositivi = 0, coutNegativi = 0;
+    double coutPositive = 0, coutNegative = 0;
 
-    double sommaPositivi = 0, sommaNegativi = 0;
-    double mediaPositivi = 0, mediaNegativi = 0;
+    double sumPositive = 0, sumNegative = 0;
+    double averagePositive = 0, averagenegative = 0;
 
     printf("Inserisci quanti numeri vuoi leggere: ");
     scanf("%d", &n);
 
+
     for (int i = 0; i < n; i++)
     {
-
         printf("Inserisci il numero: ");
-        scanf("%d", &numero);
+        scanf("%d", &number);
 
-        if (numero > 0)
+        if (number > 0)
         {
-            coutPositivi++;
-            sommaPositivi += numero;
+            coutPositive++; // Increment the counter of positive number
+            sumPositive += number; // Update the sun of postive number
         }
         else
         {
-            coutNegativi++;
-            sommaNegativi += numero;
+            coutNegative++; // Increment the counter of negative number
+            sumNegative += number; // Update the sun of postive number
         }
     }
 
-    if (coutPositivi > 0)
-        mediaPositivi = sommaPositivi / coutPositivi;
+    // Calculate the avarage of positive number
+    if (coutPositive > 0)
+        averagePositive = sumPositive / coutPositive;
 
-    if (coutNegativi > 0)
-        mediaNegativi = (sommaNegativi * -1) / coutNegativi;
+    // Calculate the avarage of negative number
+    if (coutNegative > 0)
+        averagenegative = (sumNegative * -1) / coutNegative;
 
-    printf("La somma dei numeri positivi e': %.2f\nLa media dei numeri positivi e': %.2f\n", sommaPositivi, mediaPositivi);
+    // Display the sum and the avarge of positive number
+    printf("La somma dei numeri positivi e': %.2f\nLa media dei numeri positivi e': %.2f\n", sumPositive, averagePositive);
 
-    printf("La somma dei numeri negativi e': %.2f\nLa media dei numeri negativi e': %.2f\n", (sommaNegativi * -1), mediaNegativi);
+    // Display the sum and the avarge of negative number
+    printf("La somma dei numeri negativi e': %.2f\nLa media dei numeri negativi e': %.2f\n", (sumNegative * -1), averagenegative);
 }

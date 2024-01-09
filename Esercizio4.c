@@ -9,33 +9,34 @@ stampare la somma dei primi N numeri primi alternati (uno sì e uno no)
 
 void main() {
 
-    int numero = 0;
-    int c = 2;
-    int somma = 0;
-    int _flagPrimo;
+    int number = 0;
+    int count = 2;
+    int sum = 0;
+    int _flagPrime;
 
     printf("Inserisci un numero: ");
-    scanf("%d", &numero);
+    scanf("%d", &number);
 
-    for (int i = 1; i <= numero; i++) {
+    for (int i = 1; i <= number; i++) {
 
         /* DEBUG
         printf("i: %d\n", i);
         */
         
+        
         if (i > 1) {
             
-            _flagPrimo = 1;
+            _flagPrime = 1;
             
             /* DEBUG
             printf("sono entrato per valutare\n");
             */    
 
-            // Valuta se primo
+            // Evaluate if is prime
             for (int j = 2; j <= i / 2 && j != i; j++) {
                 
                 if (i % j == 0) {
-                    _flagPrimo = 0;
+                    _flagPrime = 0;
                     break;
                 }
             }
@@ -45,11 +46,11 @@ void main() {
             */
            
             // se il numero é primo
-            if (_flagPrimo) {
-                // se il count é pari allora aggiorna la somma
-                if (c % 2 == 0) somma += i;
-                // Aggiorno il count
-                c++;
+            if (_flagPrime) {
+                // If counter if even update the sum
+                if (count % 2 == 0) sum += i;
+                // Update the counter
+                count++;
             }
         }
         
@@ -60,5 +61,6 @@ void main() {
         */
     }
     
-    printf("\nResult: %d\n", somma);
+    // Display the result
+    printf("\nResult: %d\n", sum);
 }

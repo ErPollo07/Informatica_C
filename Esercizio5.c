@@ -35,6 +35,9 @@ while (INSERIMENTO != "terminato")
 
 #define BOUND 3
 
+/*
+Display the menu
+*/
 void PrintMenuAzioni()
 {
     printf("\n\n");
@@ -47,21 +50,32 @@ void PrintMenuAzioni()
     printf("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|\n");
 }
 
+/*
+Return the sum of the array that containts the price of actions
+*/
 double Sum(double prezzi[], int bound)
 {
     double sum = 0;
+
     for (int i = 0; i < bound; i++)
     {
         sum += prezzi[i];
     }
+
     return sum;
 }
 
+/*
+Return the avarage amount of the prices of actions
+*/
 double Media(double arrayAzioni[], int bound)
 {
     return Sum(arrayAzioni, bound) / bound;
 }
 
+/*
+Return the minimum value of the prices of actions
+*/
 double Min(double arrayAzioni[], int bound)
 {
     double valMin = arrayAzioni[0];
@@ -75,6 +89,9 @@ double Min(double arrayAzioni[], int bound)
     return valMin;
 }
 
+/*
+Return the maximum value of the prices of actions
+*/
 double Max(double arrayAzioni[], int bound)
 {
     double valMax = arrayAzioni[0];
@@ -88,24 +105,29 @@ double Max(double arrayAzioni[], int bound)
     return valMax;
 }
 
+/*
+Display the avarage of the prices of acrions with price between 2.5 and 3.5
+*/
 void MediaTraValori(double arrayAzioni[], int bound, double valMax, double valMin)
 {
-    double media;
+    double avarage;
     double sum = 0;
     double count = 0;
 
+    // For each price in the array arrayAzioni 
     for (int i = 0; i < bound; i++)
     {
+        // check if the price if between 2.5 and 3.5
         if (arrayAzioni[i] >= valMin && arrayAzioni[i] <= valMax) {
-            sum += arrayAzioni[i];
-            count++;
+            sum += arrayAzioni[i]; // Update the sum
+            count++; // Upgrade the counter
         }
     }
 
     if (count > 0)
     {
-        media = sum / count;
-        printf("La media dei valori compresi tra %f e %f e': %f\n", valMin, valMax, media);
+        avarage = sum / count; // Calculate the avarage of the price
+        printf("La media dei valori compresi tra %f e %f e': %f\n", valMin, valMax, avarage);
     }
     else
     {
@@ -116,58 +138,68 @@ void MediaTraValori(double arrayAzioni[], int bound, double valMax, double valMi
 void main()
 {
 
-    double azioniApple[BOUND] = {1.48, 2.73, 3.24};
-    double azioniGoogle[BOUND] = {2.45, 3.12, 1.89};
-    double azioniAmazon[BOUND] = {3.76, 1.23, 2.98};
+    double actionApple[BOUND] = {1.48, 2.73, 3.24};
+    double actionGoogle[BOUND] = {2.45, 3.12, 1.89};
+    double actionAmazon[BOUND] = {3.76, 1.23, 2.98};
 
-    double valoreMinimo = 2.50;
-    double valoreMassimo = 3.50;
-    int scelta;
-    char inserimento[20];
+    double valMin = 2.50;
+    double valMax= 3.50;
+    int choice;
+    char insertion[20];
 
-    int flagContinuare = 1;
+    int flagTerminate = 0;
 
     do
     {
-        PrintMenuAzioni();
+        PrintMenuAzioni(); // Print menu
 
-        printf("Inserisci una scelta: ");
-        scanf("%s", &inserimento);
+        do {
+            printf("Inserisci una scelta: ");
+            scanf("%s", &insertion);
 
-        if (strcmp(inserimento, "terminato") == 0)
-        {
-            break;
-        }
+            // Check if the user digited "terminato"
+            if (strcmp(insertion, "terminato") == 0)
+            {
+                flagTerminate = 1;
+                break;
+            }
 
-        scelta = atoi(inserimento);
+            choice = atoi(insertion); // Cast insertion in int
 
-        if (scelta == 1)
+            // Check if the choice if a valid number
+            if (choice == 1 || choice == 2 || choice == 3) {
+                break;
+            }
+
+        } while (1);
+
+        // Check insertion is equal to "terminato"
+        if (flagTerminate) break;
+
+
+        if (choice == 1)
         {
-            printf("La somma delle azioni e': %f\n", Sum(azioniApple, BOUND));
-            printf("La media delle azioni e': %f\n", Media(azioniApple, BOUND));
-            printf("Il valore minimo delle azioni e': %f\n", Min(azioniApple, BOUND));
-            printf("Il valore massimo delle azioni e': %f\n", Max(azioniApple, BOUND));
-            MediaTraValori(azioniApple, BOUND, valoreMassimo, valoreMinimo);
+            printf("La somma delle azioni e': %f\n", Sum(actionApple, BOUND));
+            printf("La media delle azioni e': %f\n", Media(actionApple, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(actionApple, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(actionApple, BOUND));
+            MediaTraValori(actionApple, BOUND, valMin, valMax);
         }
-        else if (scelta == 2)
+        else if (choice == 2)
         {
-            printf("La somma delle azioni e': %f\n", Sum(azioniGoogle, BOUND));
-            printf("La media delle azioni e': %f\n", Media(azioniGoogle, BOUND));
-            printf("Il valore minimo delle azioni e': %f\n", Min(azioniGoogle, BOUND));
-            printf("Il valore massimo delle azioni e': %f\n", Max(azioniGoogle, BOUND));
-            MediaTraValori(azioniGoogle, BOUND, valoreMassimo, valoreMinimo);
+            printf("La somma delle azioni e': %f\n", Sum(actionGoogle, BOUND));
+            printf("La media delle azioni e': %f\n", Media(actionGoogle, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(actionGoogle, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(actionGoogle, BOUND));
+            MediaTraValori(actionGoogle, BOUND, valMin, valMax);
         }
-        else if (scelta == 3)
+        else if (choice == 3)
         {
-            printf("La somma delle azioni e': %f\n", Sum(azioniAmazon, BOUND));
-            printf("La media delle azioni e': %f\n", Media(azioniAmazon, BOUND));
-            printf("Il valore minimo delle azioni e': %f\n", Min(azioniAmazon, BOUND));
-            printf("Il valore massimo delle azioni e': %f\n", Max(azioniAmazon, BOUND));
-            MediaTraValori(azioniAmazon, BOUND, valoreMassimo, valoreMinimo);
-        }
-        else
-        {
-            printf("Scelta non valida\n");
+            printf("La somma delle azioni e': %f\n", Sum(actionAmazon, BOUND));
+            printf("La media delle azioni e': %f\n", Media(actionAmazon, BOUND));
+            printf("Il valore minimo delle azioni e': %f\n", Min(actionAmazon, BOUND));
+            printf("Il valore massimo delle azioni e': %f\n", Max(actionAmazon, BOUND));
+            MediaTraValori(actionAmazon, BOUND, valMin, valMax);
         }
 
     } while (1);

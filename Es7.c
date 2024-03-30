@@ -8,12 +8,13 @@ Scrivere un programma in C che dopo aver inserito una stringa a piacere permetta
    3) Aggiungere 1  carattere scelto dall’utente alla fine della stringa;
 */
 
-void deleteCharacter(char str[], char c, int bound) {
-    // ciclo tutti i caratteri della stringa
-    for (int i = 0; i < bound; i++) {
-        // se trovo il carattere nella mia stringa
+// delete all the character equals to c in str
+void deleteCharacter(char str[], char c) {
+    // Cycle throught every character of the string str 
+    for (int i = 0; i < strlen(str); i++) {
+        // If the character in position i is equal to c
         if (str[i] == c) {
-            // sposto i caratteri di un posto indietro
+            // move all the character a position before them
             for (int j = 0; j < bound - i; j++) {
                 str[i + j] = str[i + j + 1];
             }
@@ -21,22 +22,31 @@ void deleteCharacter(char str[], char c, int bound) {
     }
 }
 
+// Delete a character of the str in pos
 void deleteCharInPos(char str[], int pos) {
+    // cycle throught every character of str start from pos
     for (int i = pos; i < strlen(str); i++) {
+        // assign to current character character after it
         str[i] = str[i + 1];
     }
 }
 
+// add in the last position of str the character c
 void addLast(char str[], char c) {
-  char temp[strlen(str) + 1];
+    // Create a temp string with length of str + 1
+    char temp[strlen(str) + 1];
 
-  strcpy(temp, str);
+    // copy str in temp
+    strcpy(temp, str);
 
-  temp[strlen(temp)] = c;
+    // add to last positon c
+    temp[strlen(temp)] = c;
 
-  strcpy(str, temp);
+    // copy temp in str
+    strcpy(str, temp);
 }
 
+// Print a string to the screen
 void printString(char str[]) {
     for (int i = 0; i < strlen(str); i++) {
         printf("%c", str[i]);
@@ -44,7 +54,6 @@ void printString(char str[]) {
 }
 
 int main() {
-
     char tempStr[1000];
     char c;
     int scelta;
@@ -104,9 +113,10 @@ int main() {
             printf("Inserisci un carattere da inserire a fine stringa: ");
             scanf(" %c", &c);
 
-            // Call the function to add in the last position the character 
+            // Call the function to add in the last position the character
             addLast(str, c);
 
+            // Prit the string with the chararter in the last position
             printf("Ecco la tue stringa con il carattere %c aggiunto all fine: ", c);
             printString(str);
             break;

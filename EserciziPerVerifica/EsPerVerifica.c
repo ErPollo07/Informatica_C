@@ -84,6 +84,7 @@ int main() {
     int howManyVC[2];
     char letter;
     int counter = 0;
+    char str2[100];
 
     // take string
     printf("Inserisci una stringa: ");
@@ -112,22 +113,22 @@ int main() {
     // Create 2 string.
     // The first contains the letters in even pos.
     // The second contains only the letters in odd pos.
-    char str2[(int)(strlen(str) / 2)];
-    char str3[(int)(strlen(str) / 2)];
+    char strEven[(int)(strlen(str) / 2)];
+    char strOdd[(int)(strlen(str) / 2)];
 
-    divideChar(str, str2, str3);
+    divideChar(str, strEven, strOdd);
 
     printf("Le lettere in posizione pari sono ");
 
-    for (int i = 0; i < strlen(str2); i++) {
-        printf("%c ", str2[i]);
+    for (int i = 0; i < strlen(strEven); i++) {
+        printf("%c ", strEven[i]);
     }
     printf("\n");
 
     printf("Le lettere in posizione dispari sono ");
 
-    for (int i = 0; i < strlen(str3); i++) {
-        printf("%c ", str3[i]);
+    for (int i = 0; i < strlen(strOdd); i++) {
+        printf("%c ", strOdd[i]);
     }
     printf("\n");
     
@@ -137,6 +138,22 @@ int main() {
     } else {
         printf("La stringa non contiene doppie.\n");
     }
+
+    printf("Inserisci una seconda stringa: ");
+    scanf("%s", str2);
+
+    if (strcmp(str, str2) > 0) {
+        printf("La prima stringa e' maggiore della seconda\n");
+    } else if (strcmp(str, str2) < 0) {
+        printf("La seconda stringa e' maggiore della prima\n");
+    } else {
+        printf("Le due stringhe sono uguali.\n");
+    }
+
+    
+
+    printf("Compare: %d", strcmp(str, str2));
+    
 
     printf("\n\n");
     return 0;

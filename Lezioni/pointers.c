@@ -27,13 +27,16 @@ int main() {
     pointer = &alfa; // Assign to pointer the address of alfa
     printf("alfa -> %d, beta -> %d, pointer -> %d\n", alfa, beta, pointer);
 
-    beta = *pointer; // assign to beta the value of the pointer (not the address), which is the value of alfa
+    // assign to beta the value of the pointer (not the address), which is the value of alfa
+    beta = *pointer;
     printf("alfa -> %d, beta -> %d, pointer -> %d\n", alfa, beta, pointer);
 
-    alfa = pointer; // assign to alfa the value of its address
+    // assign to alfa the value of its address
+    alfa = pointer; 
     printf("alfa -> %d, beta -> %d, pointer -> %d\n", alfa, beta, pointer);
 
-    *pointer = 5; // chage the value at the address that the pointer points to, so alfa is now 5
+    // chage the value at the address that the pointer points to, so alfa is now 5
+    *pointer = 5; 
     printf("alfa -> %d, beta -> %d, pointer -> %d\n", alfa, beta, pointer);
     /* END RASPA */
 

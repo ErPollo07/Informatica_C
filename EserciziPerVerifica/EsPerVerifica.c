@@ -26,6 +26,32 @@ void printString(char str[]) {
     }
 }
 
+bool containsDouble(char str[]) {
+    for (int i = 0; i < strlen(str) - 1; i++) {
+        if (str[i] == str[i + 1]) return true;
+    }
+
+     return false;
+}
+
+void divideChar(char str[], char evenCharacter[], char oddCharacter[]) {
+    int indexEven = 0;
+    int indexOdd = 0;
+    
+    for (int i = 0; i < strlen(str); i++) {
+        if (i % 2 == 0) {
+            evenCharacter[indexEven] = str[i];
+            indexEven++;
+        } else {
+            oddCharacter[indexOdd] = str[i];
+            indexOdd++;
+        }
+    }
+
+    evenCharacter[indexEven] = '\0';
+    oddCharacter[indexOdd] = '\0';
+}
+
 void containsTheLetter(char str[], int letter, int * counter) {
     for (int i = 0; i < strlen(str); i++) {
         if (str[i] == letter) ++(*counter);
@@ -86,10 +112,31 @@ int main() {
     // Create 2 string.
     // The first contains the letters in even pos.
     // The second contains only the letters in odd pos.
+    char str2[(int)(strlen(str) / 2)];
+    char str3[(int)(strlen(str) / 2)];
+
+    divideChar(str, str2, str3);
+
+    printf("Le lettere in posizione pari sono ");
+
+    for (int i = 0; i < strlen(str2); i++) {
+        printf("%c ", str2[i]);
+    }
+    printf("\n");
+
+    printf("Le lettere in posizione dispari sono ");
+
+    for (int i = 0; i < strlen(str3); i++) {
+        printf("%c ", str3[i]);
+    }
+    printf("\n");
     
-
     // Check if contiains double (doppie)
-
+    if (containsDouble(str)) {
+        printf("La stringa contiene doppie.\n");
+    } else {
+        printf("La stringa non contiene doppie.\n");
+    }
 
     printf("\n\n");
     return 0;

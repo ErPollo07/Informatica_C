@@ -26,13 +26,29 @@ void printString(char str[]) {
     }
 }
 
-void countVocalConsonant(char str[], int * counters) {
+void containsTheLetter(char str[], int letter, int * counter) {
     for (int i = 0; i < strlen(str); i++) {
-        if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u') {
+        if (str[i] == letter) ++(*counter);
+    }
+}
+
+bool containsOnlyletter(char str[]) {
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] < 'a' || str[i] > 'z') return false;
+    }
+
+    return true;
+}
+
+void countVocalConsonant(char str[], int counters[]) {
+    counters[0] = 0;
+    counters[1] = 0;
+
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
             counters[0]++;
-        } else if (str[i] >= 'a' && str[i] <= 'z') {
+        else if (str[i] >= 'a' && str[i] <= 'z')
             counters[1]++;
-        }
     }
 }
 
@@ -40,22 +56,37 @@ int main() {
 
     char str[100];
     int howManyVC[2];
+    char letter;
+    int counter = 0;
 
     // take string
     printf("Inserisci una stringa: ");
     scanf("%s", str);
 
     // Check how many vocal and consonant
-    countVocalConsonant(str, &howManyVC);
+    countVocalConsonant(str, howManyVC);
     printf("Le vocali sono : %d\nLe consonanti sono : %d\n", howManyVC[0], howManyVC[1]);
 
     // Check if the string contains only letter
+    if (containsOnlyletter(str)) {
+        printf("la stringa contiene solo lettere\n");
+    }
+    else {
+        printf("la stringa non contiene solo lettere\n");
+    }
 
     // Count a letter
+    printf("Inserisci quale lettere vuoi cercare nella stringa: ");
+    scanf(" %c", &letter);
+
+    containsTheLetter(str, letter, &counter);
+
+    printf("La lettera %c si trova %d volte.", letter, counter);
 
     // Create 2 string.
     // The first contains the letters in even pos.
     // The second contains only the letters in odd pos.
+    
 
     // Check if contiains double (doppie)
 

@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-
 /*
 Scrivere un programma in C che dopo aver inserito una stringa a piacere determini e o verifichi:
   1) Il numero di consonanti e vocali contenute;
@@ -24,6 +23,26 @@ void printString(char str[]) {
     for (int i = 0; i < strlen(str); i++) {
         printf("%c", str[i]);
     }
+}
+
+int countVocal(char str[]) {
+    int counter = 0;
+
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u') ++counter;
+    }
+
+    return counter;
+}
+
+int countConsonant(char str[]) {
+    int counter = 0;
+
+    for (int i = 0; i < strlen(str); i++) {
+        if (str[i] != 'a' && str[i] != 'e' && str[i] != 'i' && str[i] != 'o' && str[i] != 'u') ++counter;
+    }
+
+    return counter;
 }
 
 bool containsDouble(char str[]) {
@@ -78,8 +97,22 @@ void countVocalConsonant(char str[], int counters[]) {
     }
 }
 
-int main() {
+void retriveSameChars(char str[], char str2[], char * chars) {
+    int indexChars = 0;
 
+    for (int i = 0; i < strlen(str); i++) {
+        for (int j = 0; j < strlen(str2); j++) {
+            if (str[i] == str[j]) {
+                chars[indexChars] = str[i];
+                indexChars++;
+            }
+        }
+    }
+
+    chars[indexChars] = '\0';
+}
+
+int main() {
     char str[100];
     int howManyVC[2];
     char letter;
@@ -139,9 +172,11 @@ int main() {
         printf("La stringa non contiene doppie.\n");
     }
 
+    // tell the user to insert a second string
     printf("Inserisci una seconda stringa: ");
     scanf("%s", str2);
 
+    // compare the first string with the second
     if (strcmp(str, str2) > 0) {
         printf("La prima stringa e' maggiore della seconda\n");
     } else if (strcmp(str, str2) < 0) {
@@ -150,10 +185,35 @@ int main() {
         printf("Le due stringhe sono uguali.\n");
     }
 
-    
+    // compare the number of vocal of the first string with the second
+    if (countVocal(str) > countVocal(str2)) {
+        printf("La prima stringa ha piu' vocali della seconda.\n");
+    } else if (countVocal(str) < countVocal(str2)) {
+        printf("La sconda stringa a  piu' voacali della seconda.\n");
+    } else {
+        printf("Le due stringhe hanno ugual numero di vocali.\n");
+    }
 
-    printf("Compare: %d", strcmp(str, str2));
-    
+    // compare the number of consonant of the first string with the second
+    if (countConsonant(str) > countConsonant(str2)) {
+        printf("La prima stringa ha piu' consonanti della seconda.\n");
+    } else if (countConsonant(str) < countConsonant(str2)) {
+        printf("La sconda stringa a piu' consonanti della seconda.\n");
+    } else {
+        printf("Le due stringhe hanno ugual numero di consonanti.\n");
+    }
+
+    // create the array of char which contains the chars which these are in the first and second string
+    char charInAllString[strlen(str)];
+
+    // cal the function to retrive the caracters
+    retriveSameChars(str, str2, &charInAllString);
+
+    // Prrint the caracters
+    printf("i caratteri comuni a tutte e due le stringhe sono: ");
+    for (int i = 0; i < strlen(charInAllString); i++) {
+        printf("%c ", charInAllString[i]);
+    }
 
     printf("\n\n");
     return 0;

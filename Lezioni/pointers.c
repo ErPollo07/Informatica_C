@@ -2,9 +2,9 @@
 
 int main() {
 
-    // Pointer = a variable that hold an address
+    // Pointer = a variable that hold an address of another variable
     // To declarate a pointer we need to write
-    // <type> * <name> = <adrress>
+    // <type> * <name>;
 
     int x = 4; // create a int variable with value 4
     int * pX = &x; // Create a pointer named pX and assign the value of the address of the variable x
@@ -14,6 +14,13 @@ int main() {
     int y = *pX;
 
     // Print a pointer
+    int a = 10;
+    int *p = &a;
+    
+    printf("Contenuto del puntatore : %d\n", p);
+    printf("Contenuto della variabile che sta puntando : %d\n", *p);
+    printf("L'indirizzo della varibile che sta puntando : %d\n", &a);
+
     // address
     printf("Value of the pointer = %d\n", pX);
     // Value which is pointing on

@@ -5,14 +5,23 @@ Dopo aver letto un vettore di N elementi
 utilizzando i puntatori calcolare la media del vettore e determinare il massimo ed il minimo.
 */
 
-float calcolaMedia(int arr[], int lenArr, float *dest) {
-    int sum = 0;
+float calcolaMediaMinMax(int arr[], int lenArr, float *media, int *min, int *max) {
+    float sum = 0;
+
+    *min = arr[0];
+    *max = arr[0];
     
     for (int i = 0; i < lenArr; i++) {
+        if (arr[i] < *min) {
+            *min = arr[i];
+        } else if (arr[i] > *max) {
+            *max = arr[i];
+        }
+
         sum += arr[i];
     }
 
-    *dest = sum / lenArr;
+    *media = sum / lenArr;
 }
 
 int main() {
@@ -31,9 +40,11 @@ int main() {
         scanf("%d", &numbers[i]);
     }
 
-    calcolaMedia(numbers, N, &media);
+    calcolaMediaMinMax(numbers, N, &media, &minimo, &massimo);
 
-    printf("La media e': %.2f", media);
+    printf("La media e': %.2f\n", media);
+    printf("Il minimo dell'array e': %d\n", minimo);
+    printf("Il massimo dell'array e': %d\n", massimo);
 
     printf("\n\n");
     return 0;
